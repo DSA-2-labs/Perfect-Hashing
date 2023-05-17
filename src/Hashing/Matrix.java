@@ -1,3 +1,5 @@
+package Hashing;
+
 public class Matrix {
     int rows;
     int cols;

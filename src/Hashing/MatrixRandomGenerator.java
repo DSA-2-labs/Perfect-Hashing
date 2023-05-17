@@ -1,3 +1,7 @@
+package Hashing;
+
+import Hashing.Matrix;
+
 public class MatrixRandomGenerator {
     public static Matrix generate(int rows, int cols) {
         Matrix ans = new Matrix(rows, cols);
