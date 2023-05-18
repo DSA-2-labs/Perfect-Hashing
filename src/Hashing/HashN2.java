@@ -1,4 +1,9 @@
 package Hashing;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 public class HashN2 implements PerfectHashing {
     private int rebuild;
     private int N;
@@ -12,7 +17,7 @@ public class HashN2 implements PerfectHashing {
         int closestPowerOf2 = 1;
         int tmpBits = 0;
         while(closestPowerOf2 < n) {
-            closestPowerOf2 <<= 2;
+            closestPowerOf2 <<= 1;
             tmpBits++;
         }
         this.rebuild = 0;
@@ -26,6 +31,7 @@ public class HashN2 implements PerfectHashing {
     public boolean insert(Pair pair) {
         if(this.elementCounter == 0) {
             this.hashFunction = MatrixRandomGenerator.generate(this.b, 32);
+            hashFunction.print();
         }
         else if(this.elementCounter == N) {
             return false;
@@ -35,7 +41,6 @@ public class HashN2 implements PerfectHashing {
         int index = calcIndex(key);
 
         if (this.hashTable[index] != null && this.hashTable[index].key != key) {
-            this.rebuild++;
             this.rehash();
             return this.insert(pair);
         }
@@ -52,7 +57,7 @@ public class HashN2 implements PerfectHashing {
     }
 
     @Override
-    public int batchInsert(Pair[] pairs) {
+    public int batchInsert(List<Pair> pairs) {
         int counter = 0;
         for(Pair p: pairs) {
             if(this.insert(p)) {
@@ -110,8 +115,14 @@ public class HashN2 implements PerfectHashing {
 
     @Override
     public void rehash() {
+        this.rebuild++;
         this.elementCounter = 0;
+        List<Pair> tmp = new ArrayList<>();
+        for(Pair p: hashTable) {
+            if (p != null) tmp.add(p);
+        }
         this.hashTable = new Pair[this.N];
+        this.batchInsert(tmp);
     }
 
     @Override

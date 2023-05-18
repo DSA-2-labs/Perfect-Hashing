@@ -51,6 +51,7 @@ public class Dictionary {
             System.out.println(word+" : "+ x);
 //            result.add(added);
         }
+        dict.print();
         return counter;
     }
     public int Batch_Delete(String fname) throws RuntimeException

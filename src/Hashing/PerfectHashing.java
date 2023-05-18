@@ -1,8 +1,10 @@
 package Hashing;
 
+import java.util.List;
+
 public interface PerfectHashing {
     boolean insert(Pair pair);
-    int batchInsert(Pair[] pairs);
+    int batchInsert(List<Pair> pairs);
     boolean delete(Pair pair);
     int batchDelete(Pair[] pairs);
     Object lookup(int key);
@@ -10,4 +12,5 @@ public interface PerfectHashing {
     boolean searchForKey(int key);
     void rehash();
     int getRebuildCounter();
+    void print();
 }

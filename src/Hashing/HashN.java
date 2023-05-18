@@ -1,5 +1,7 @@
 package Hashing;
 
+import java.util.List;
+
 public class HashN implements PerfectHashing {
     public HashN(int n) {
 
@@ -11,7 +13,7 @@ public class HashN implements PerfectHashing {
     }
 
     @Override
-    public int batchInsert(Pair[] pairs) {
+    public int batchInsert(List<Pair> pairs) {
         return 0;
     }
 
@@ -48,5 +50,10 @@ public class HashN implements PerfectHashing {
     @Override
     public int getRebuildCounter() {
         return 0;
+    }
+
+    @Override
+    public void print() {
+
     }
 }
