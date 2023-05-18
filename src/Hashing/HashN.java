@@ -1,6 +1,10 @@
 package Hashing;
 
 public class HashN implements PerfectHashing {
+    public HashN(int n)
+    {
+
+    }
     @Override
     public void build(Pair[] pairs) {
 
