@@ -1,6 +1,6 @@
 package Hashing;
 
 public class Pair {
-    int key;
-    Object value;
+    public int key;
+    public Object value;
 }
