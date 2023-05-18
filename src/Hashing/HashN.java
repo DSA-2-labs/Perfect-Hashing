@@ -1,18 +1,28 @@
 package Hashing;
 
 public class HashN implements PerfectHashing {
-    public HashN(int n)
-    {
-
-    }
-    @Override
-    public void build(Pair[] pairs) {
+    public HashN(int n) {
 
     }
 
     @Override
-    public void insert(Pair pair) {
+    public boolean insert(Pair pair) {
+        return false;
+    }
 
+    @Override
+    public int batchInsert(Pair[] pairs) {
+        return 0;
+    }
+
+    @Override
+    public boolean delete(Pair pair) {
+        return false;
+    }
+
+    @Override
+    public int batchDelete(Pair[] pairs) {
+        return 0;
     }
 
     @Override
@@ -21,8 +31,13 @@ public class HashN implements PerfectHashing {
     }
 
     @Override
-    public Object BatchLookup(int[] keys) {
+    public Object[] BatchLookup(int[] keys) {
         return null;
+    }
+
+    @Override
+    public boolean searchForKey(int key) {
+        return false;
     }
 
     @Override
