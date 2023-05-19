@@ -34,6 +34,7 @@ public class HashN2 implements PerfectHashing {
             hashFunction.print();
         }
         else if(this.elementCounter == N) {
+            System.out.println("Size is exceeded!");
             return false;
         }
         int key = pair.key;
@@ -45,6 +46,7 @@ public class HashN2 implements PerfectHashing {
             return this.insert(pair);
         }
         else if (this.hashTable[index] != null && this.hashTable[index].key == key){
+            System.out.println("Word already exists!");
             return false;
         }
         else {
@@ -52,6 +54,7 @@ public class HashN2 implements PerfectHashing {
             this.hashTable[index] = new Pair();
             this.hashTable[index].key = key;
             this.hashTable[index].value = value;
+            System.out.println("Word inserted successfully!");
             return true;
         }
     }
@@ -72,12 +75,15 @@ public class HashN2 implements PerfectHashing {
         int key = pair.key;
         int index = calcIndex(key);
         if (this.hashTable[index] == null) {
+            System.out.println("Word doesn't exist!");
             return false;
         }
         else if(this.hashTable[index].key == key) {
             this.hashTable[index] = null;
+            System.out.println("Word deleted successfully!");
             return true;
         }
+//        System.out.println("No words entered yet!");
         return false;
     }
 

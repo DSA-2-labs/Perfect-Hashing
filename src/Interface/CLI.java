@@ -43,20 +43,22 @@ public class CLI {
                     System.out.println("Please enter the word:");
                     String word = sc.next();
                     assert dictionary != null;
-                    if (dictionary.insert_word(word))
-                        System.out.println(word + " : " + "Word inserted successfully!");
-                    else
-                        System.out.println(word + " : " +"Word already exists!");
+                    dictionary.insert_word(word);
+//                    if (dictionary.insert_word(word))
+//                        System.out.println(word + " : " + "Word inserted successfully!");
+//                    else
+//                        System.out.println(word + " : " +"Word already exists!");
 
                 }
                 case 2 -> {
                     System.out.println("Please enter the word:");
                     String word = sc.next();
                     assert dictionary != null;
-                    if (dictionary.delete_word(word))
-                        System.out.println(word + " : " +"Word deleted successfully!");
-                    else
-                        System.out.println(word + " : " +"Word does not exist!");
+                    dictionary.delete_word(word);
+//                    if (dictionary.delete_word(word))
+//                        System.out.println(word + " : " +"Word deleted successfully!");
+//                    else
+//                        System.out.println(word + " : " +"Word does not exist!");
 
                 }
                 case 3 -> {

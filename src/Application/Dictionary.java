@@ -47,8 +47,8 @@ public class Dictionary {
         {
             boolean added = insert_word((String) word);
             counter = added? counter+1 : counter;
-            String x= added ? "Word inserted successfully!" : "Word already exists!";
-            System.out.println(word+" : "+ x);
+//            String x= added ? "Word inserted successfully!" : "Word already exists!";
+//            System.out.println(word+" : "+ x);
 //            result.add(added);
         }
         dict.print();
@@ -62,8 +62,8 @@ public class Dictionary {
         {
             boolean deleted = delete_word((String) word);
             counter=deleted? counter+1 : counter;
-            String x= deleted ? "Word deleted successfully!" : "Word doesn't exist!";
-            System.out.println(word+" : "+ x);
+//            String x= deleted ? "Word deleted successfully!" : "Word doesn't exist!";
+//            System.out.println(word+" : "+ x);
 //            result.add(deleted);
         }
         return counter;
@@ -83,5 +83,6 @@ public class Dictionary {
     {
         return dict.getRebuildCounter();
     }
+
 
 }
