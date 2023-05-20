@@ -8,7 +8,7 @@ public class HashN2 implements PerfectHashing {
     private int rebuild;
     private int N;
     private int b; //number of bits: M = 2^b
-    private Pair[] hashTable;
+    public Pair[] hashTable;
     private Matrix hashFunction;
     private int elementCounter;
 
@@ -149,5 +149,61 @@ public class HashN2 implements PerfectHashing {
             System.out.printf("Index %d -> key: %d, value: ", i, this.hashTable[i].key);
             System.out.println(this.hashTable[i].value);
         }
+    }
+    public ArrayList<Pair> getPairs(){
+        ArrayList<Pair> pairs = new ArrayList<>();
+        for(int i = 0; i < N; i++){
+            if(this.hashTable[i] == null)
+                continue;
+            pairs.add(this.hashTable[i]);
+        }
+        return pairs;
+    }
+    public void setRebuild(int rebuild) {
+        this.rebuild = rebuild;
+    }
+
+    public int getN() {
+        return N;
+    }
+
+    public void setN(int n) {
+        N = n;
+    }
+
+    public int getB() {
+        return b;
+    }
+
+    public void setB(int b) {
+        this.b = b;
+    }
+
+    public Pair[] getHashTable() {
+        return hashTable;
+    }
+
+    public void setHashTable(Pair[] hashTable) {
+        this.hashTable = hashTable;
+    }
+
+    public Matrix getHashFunction() {
+        return hashFunction;
+    }
+
+    public void setHashFunction(Matrix hashFunction) {
+        this.hashFunction = hashFunction;
+    }
+
+    public int getElementCounter() {
+        return elementCounter;
+    }
+
+    public void setElementCounter(int elementCounter) {
+        this.elementCounter = elementCounter;
+    }
+    public boolean collisionCheck(int key){
+        int index = calcIndex(key);
+        return this.hashTable[index] != null && this.hashTable[index].key != key;
     }
 }
