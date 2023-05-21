@@ -34,15 +34,15 @@ public class HashN2 implements PerfectHashing {
     }
 
 
+
     @Override
     public boolean insert(Pair pair) {
         if(this.elementCounter == 0 && this.firsttime) {
             this.hashFunction = MatrixRandomGenerator.generate(this.b, 32);
-//            hashFunction.print();
             this.firsttime = false;
         }
-        else if(this.elementCounter == N) {
-//            System.out.println("Size is exceeded!");
+        else
+            if(this.elementCounter == N) {
             return false;
         }
         int key = pair.key;
@@ -54,7 +54,6 @@ public class HashN2 implements PerfectHashing {
             return this.insert(pair);
         }
         else if (this.hashTable[index] != null && this.hashTable[index].key == key){
-//            System.out.println("Word already exists!");
             return false;
         }
         else {
@@ -62,7 +61,6 @@ public class HashN2 implements PerfectHashing {
             this.hashTable[index] = new Pair();
             this.hashTable[index].key = key;
             this.hashTable[index].value = value;
-//            System.out.println("Word inserted successfully!");
             return true;
         }
     }
@@ -80,24 +78,24 @@ public class HashN2 implements PerfectHashing {
 
     @Override
     public boolean delete(Pair pair) {
+        if(this.elementCounter==0)
+            return false;
         int key = pair.key;
         int index = calcIndex(key);
         if (this.hashTable[index] == null) {
-//            System.out.println("Word doesn't exist!");
             return false;
         }
         else if(this.hashTable[index].key == key) {
             this.elementCounter--;
             this.hashTable[index] = null;
-//            System.out.println("Word deleted successfully!");
             return true;
         }
-//        System.out.println("No words entered yet!");
         return false;
     }
 
     @Override
     public int batchDelete(Pair[] pairs) {
+
         int counter = 0;
         for(Pair p: pairs) {
             if(this.delete(p)) {

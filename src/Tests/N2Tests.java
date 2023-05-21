@@ -1,7 +1,10 @@
 package Tests;
+import Application.FileReader.FileReader;
 import Hashing.HashN2;
 import Hashing.Pair;
 import org.junit.Test;
+
+import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 
@@ -48,19 +51,61 @@ public class N2Tests {
     public void Test2()//mainly test insert function
     {
         h=new HashN2(10);
-        h.insert(new Pair());
+        Pair[] p = {new Pair("Serendipity".hashCode(),"Serendipity"),
+                new Pair("Mellifluous".hashCode(),"Mellifluous"),
+                new Pair("Ephemeral".hashCode(),"Ephemeral"),
+                new Pair("Quixotic".hashCode(),"Quixotic"),
+                new Pair("Effervescent".hashCode(),"Effervescent"),
+                new Pair("Resplendent".hashCode(),"Resplendent"),
+                new Pair("Ebullient".hashCode(),"Ebullient"),
+                new Pair("Labyrinthine".hashCode(),"Labyrinthine"),
+                new Pair("Petrichor".hashCode(),"Petrichor"),
+                new Pair("Susurrous".hashCode(),"Susurrous")
+        };
+        for (int i = 0; i < p.length; i++) {
+            assertTrue(h.insert(p[i]));
+            assertFalse(h.insert(p[i]));
+        }
     }
     @Test
     public void Test3()//mainly test delete function
     {
-
+        insertcases("ahmed","adham","ali","belal","bassem","kareem","hussein",
+                "hassan","mohamed","mahmoud","hesham","marwan");
+        Pair[] p =
+                {new Pair("ahmed".hashCode(),"ahmed"),
+                new Pair("adham".hashCode(),"adham"),
+                new Pair("ali".hashCode(),"ali"),
+                new Pair("belal".hashCode(),"belal"),
+                new Pair("bassem".hashCode(),"bassem"),
+                new Pair("kareem".hashCode(),"kareem"),
+                new Pair("hussein".hashCode(),"hussein"),
+                new Pair("hassan".hashCode(),"hassan"),
+                new Pair("mohamed".hashCode(),"mohamed"),
+                new Pair("mahmoud".hashCode(),"mahmoud"),
+                new Pair("hesham".hashCode(),"hesham"),
+                new Pair("marwan".hashCode(),"marwan")
+        };
+        for (int i = 0; i < p.length; i++) {
+            assertTrue(h.delete(p[i]));
+            assertFalse(h.delete(p[i]));
+        }
     }
     @Test
     public void Test4()//mainly test for batch insert
-    {}
+    {
+        ArrayList<Pair> pair = FileReader.loadpairslist("/home/mahmoud/Test1.txt");
+        h = new HashN2(pair.size());
+        assertEquals(10000,h.batchInsert(pair));
+    }
     @Test
     public void Test5()//mainly test for batch delete
-    {}
+    {
+        Pair[] pair = FileReader.loadpairsarray("/home/mahmoud/Test1.txt");
+        h = new HashN2(pair.length);
+        assertEquals(0,h.batchDelete(pair));
+
+    }
     @Test
     public void Test6()
     {
