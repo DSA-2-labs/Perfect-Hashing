@@ -17,6 +17,7 @@ public class CLI {
         int choice = sc.nextInt();
         System.out.println("Please enter the hash table initial size");
         int size = sc.nextInt();
+
         switch (choice) {
             case 1 -> dictionary = new Dictionary("Hash_N2",size);
             case 2 -> dictionary = new Dictionary("Hash_N",size);
@@ -101,6 +102,7 @@ public class CLI {
                         System.out.println("Number of successfully added words = "+count);
                     } catch (RuntimeException e) {
                         System.out.println("File not found!");
+                        System.out.println(e);
                     }
                 }
                 case 6 -> {

@@ -12,21 +12,25 @@ public class HashN2 implements PerfectHashing {
     private Matrix hashFunction;
     private int elementCounter;
     private boolean firsttime;
-
     public HashN2(int n) {
-        n *= n;
-        int closestPowerOf2 = 1;
-        int tmpBits = 0;
-        while(closestPowerOf2 < n) {
-            closestPowerOf2 <<= 1;
-            tmpBits++;
+        try {
+            n *= n;
+            int closestPowerOf2 = 1;
+            int tmpBits = 0;
+            while (closestPowerOf2 < n) {
+                closestPowerOf2 <<= 1;
+                tmpBits++;
+            }
+            this.rebuild = 0;
+            this.N = closestPowerOf2;
+            System.out.println(this.N);
+            this.b = tmpBits;
+            this.hashTable = new Pair[N];
+            this.elementCounter = 0;
+            this.firsttime = true;
+        }catch (Exception e){
+            System.out.println(e);
         }
-        this.rebuild = 0;
-        this.N = closestPowerOf2;
-        this.b = tmpBits;
-        this.hashTable = new Pair[N];
-        this.elementCounter = 0;
-        this.firsttime = true;
     }
 
 

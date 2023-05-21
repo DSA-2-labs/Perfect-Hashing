@@ -33,15 +33,12 @@ public class HashN implements PerfectHashing {
             this.SecondLevelTemp.add(new ArrayList<Pair>());
         this.lastindex=-1;
         this.firsttime=true;
+        this.hashFunction = MatrixRandomGenerator.generate(this.b, 32);
+        hashFunction.print();
     }
 
     @Override
     public boolean insert(Pair pair) {
-        if(this.elementCounter == 0&&this.firsttime) {
-            this.hashFunction = MatrixRandomGenerator.generate(this.b, 32);
-            hashFunction.print();
-            this.firsttime = false;
-        }
         int key = pair.key;
         Object value = pair.value;
         int index = calcIndex(key);
