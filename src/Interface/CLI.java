@@ -52,23 +52,24 @@ public class CLI {
                     sc.nextLine();
                     String word = sc.nextLine();
                     assert dictionary != null;
-                    dictionary.insert_word(word);
-//                    if (dictionary.insert_word(word))
-//                        System.out.println(word + " : " + "Word inserted successfully!");
-//                    else
-//                        System.out.println(word + " : " +"Word already exists!");
-
+                    if (dictionary.insert_word(word))
+                        System.out.println(word + " : " + "Word inserted successfully!");
+                    else {
+                        if(dictionary.get_no_elements() == size)
+                            System.out.println(word + " : " + "Size exceeded!!");
+                        else
+                            System.out.println(word + " : "+"word is already exist!");
+                    }
                 }
                 case 2 -> {
                     System.out.println("Please enter the word:");
                     sc.nextLine();
                     String word = sc.nextLine();
                     assert dictionary != null;
-                    dictionary.delete_word(word);
-//                    if (dictionary.delete_word(word))
-//                        System.out.println(word + " : " +"Word deleted successfully!");
-//                    else
-//                        System.out.println(word + " : " +"Word does not exist!");
+                    if (dictionary.delete_word(word))
+                        System.out.println(word + " : " +"Word deleted successfully!");
+                    else
+                        System.out.println(word + " : " + "Word does not exist!");
 
                 }
                 case 3 -> {

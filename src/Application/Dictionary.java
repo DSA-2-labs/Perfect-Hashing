@@ -73,6 +73,13 @@ public class Dictionary {
     {
         return dict.getRebuildCounter();
     }
+    public int get_no_elements(){
+        if(dict instanceof HashN2)
+        {
+            return ((HashN2) dict).getElementCounter();
+        }
+        return -1;
+    }
 
 
 }
