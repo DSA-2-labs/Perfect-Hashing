@@ -14,6 +14,8 @@ public class HashN implements PerfectHashing {
 
     private Pair lastpair;
     private int rebuildCounter;
+
+    private boolean firsttime;
     public HashN(int n) {
         int closestPowerOf2 = 1;
         int tmpBits = 0;
@@ -30,13 +32,15 @@ public class HashN implements PerfectHashing {
         for(int i=0;i<this.N;i++)
             this.SecondLevelTemp.add(new ArrayList<Pair>());
         this.lastindex=-1;
+        this.firsttime=true;
     }
 
     @Override
     public boolean insert(Pair pair) {
-        if(this.elementCounter == 0) {
+        if(this.elementCounter == 0&&this.firsttime) {
             this.hashFunction = MatrixRandomGenerator.generate(this.b, 32);
             hashFunction.print();
+            this.firsttime = false;
         }
         int key = pair.key;
         Object value = pair.value;
@@ -47,7 +51,6 @@ public class HashN implements PerfectHashing {
         if (this.hashTable[index] == null) {
             this.hashTable[index] = new HashN2(1);
             this.hashTable[index].insert(pair);
-            this.SecondLevelTemp.get(index).add(pair);
             this.elementCounter++;
             return true;
         }
@@ -63,6 +66,8 @@ public class HashN implements PerfectHashing {
             return true;
         }
         else {
+            if(this.hashTable[index].getElementCounter()!=0)
+                this.rebuildCounter++;
             if(this.hashTable[index].insert(pair)){
                 this.elementCounter++;
                 return true;
@@ -85,11 +90,12 @@ public class HashN implements PerfectHashing {
         {
             if(this.SecondLevelTemp.get(i).size()>0)
             {
-                if(this.hashTable[i]==null){
-                    System.out.println("there was no hashtable in the second level");
-                    System.out.println("i: "+i+" size: "+this.SecondLevelTemp.get(i).size());
+                if(this.hashTable[i]==null||this.hashTable[i].getElementCounter()==0){
                     this.hashTable[i]=new HashN2(this.SecondLevelTemp.get(i).size());
-                    counter+=this.hashTable[i].batchInsert(this.SecondLevelTemp.get(i));
+                    int count=this.hashTable[i].batchInsert(this.SecondLevelTemp.get(i));
+                    counter+=count;
+                    elementCounter+=count;
+                    rebuildCounter+=this.SecondLevelTemp.get(i).size()-1;
                 }
                 else{
                     for(Pair pair:this.SecondLevelTemp.get(i)) {
@@ -101,8 +107,8 @@ public class HashN implements PerfectHashing {
                 }
                 this.SecondLevelTemp.get(i).clear();
             }
-            System.out.println("i: "+i+" counter: "+counter);
         }
+        this.print();
         return counter;
     }
 

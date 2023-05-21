@@ -11,6 +11,7 @@ public class HashN2 implements PerfectHashing {
     public Pair[] hashTable;
     private Matrix hashFunction;
     private int elementCounter;
+    private boolean firsttime;
 
     public HashN2(int n) {
         n *= n;
@@ -25,13 +26,15 @@ public class HashN2 implements PerfectHashing {
         this.b = tmpBits;
         this.hashTable = new Pair[N];
         this.elementCounter = 0;
+        this.firsttime = true;
     }
 
     @Override
     public boolean insert(Pair pair) {
-        if(this.elementCounter == 0) {
+        if(this.elementCounter == 0 && this.firsttime) {
             this.hashFunction = MatrixRandomGenerator.generate(this.b, 32);
             hashFunction.print();
+            this.firsttime = false;
         }
         else if(this.elementCounter == N) {
             System.out.println("Size is exceeded!");
@@ -79,6 +82,7 @@ public class HashN2 implements PerfectHashing {
             return false;
         }
         else if(this.hashTable[index].key == key) {
+            this.elementCounter--;
             this.hashTable[index] = null;
             System.out.println("Word deleted successfully!");
             return true;
@@ -123,6 +127,7 @@ public class HashN2 implements PerfectHashing {
     public void rehash() {
         this.rebuild++;
         this.elementCounter = 0;
+        this.firsttime = true;
         List<Pair> tmp = new ArrayList<>();
         for(Pair p: hashTable) {
             if (p != null) tmp.add(p);

@@ -37,7 +37,15 @@ public class CLI {
             System.out.println("7. Return to choose Hashing type");
             System.out.println("8. Rehashing times");
             System.out.println("9. Exit");
-            choice = sc.nextInt();
+            try {
+                choice = sc.nextInt();
+            }
+            catch (Exception e)
+            {
+                System.out.println("Invalid choice!");
+                sc.nextLine();
+                continue;
+            }
             switch (choice) {
                 case 1 -> {
                     System.out.println("Please enter the word:");

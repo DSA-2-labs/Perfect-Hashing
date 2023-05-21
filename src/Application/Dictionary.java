@@ -42,7 +42,6 @@ public class Dictionary {
         for (Object word:FileReader.loadfile(fname))
             pairs.add(new Pair(word.hashCode(),word));
 
-        dict.print();
         return dict.batchInsert(pairs);
     }
     public int Batch_Delete(String fname) throws RuntimeException
