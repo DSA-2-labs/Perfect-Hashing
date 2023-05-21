@@ -41,7 +41,8 @@ public class CLI {
             switch (choice) {
                 case 1 -> {
                     System.out.println("Please enter the word:");
-                    String word = sc.next();
+                    sc.nextLine();
+                    String word = sc.nextLine();
                     assert dictionary != null;
                     dictionary.insert_word(word);
 //                    if (dictionary.insert_word(word))
@@ -52,7 +53,8 @@ public class CLI {
                 }
                 case 2 -> {
                     System.out.println("Please enter the word:");
-                    String word = sc.next();
+                    sc.nextLine();
+                    String word = sc.nextLine();
                     assert dictionary != null;
                     dictionary.delete_word(word);
 //                    if (dictionary.delete_word(word))
@@ -63,7 +65,8 @@ public class CLI {
                 }
                 case 3 -> {
                     System.out.println("Please enter the word:");
-                    String word = sc.next();
+                    sc.nextLine();
+                    String word = sc.nextLine();
                     assert dictionary != null;
                     if (dictionary.search_word(word))
                         System.out.println(word + " : " +"Word found!");

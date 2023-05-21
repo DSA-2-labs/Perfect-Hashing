@@ -10,6 +10,9 @@ public class HashN implements PerfectHashing {
     private Matrix hashFunction;
     ArrayList<ArrayList<Pair>> SecondLevelTemp;
     private int elementCounter;
+    private int lastindex;
+
+    private Pair lastpair;
     private int rebuildCounter;
     public HashN(int n) {
         int closestPowerOf2 = 1;
@@ -26,6 +29,7 @@ public class HashN implements PerfectHashing {
         this.SecondLevelTemp=new ArrayList<ArrayList<Pair>>();
         for(int i=0;i<this.N;i++)
             this.SecondLevelTemp.add(new ArrayList<Pair>());
+        this.lastindex=-1;
     }
 
     @Override
@@ -37,6 +41,8 @@ public class HashN implements PerfectHashing {
         int key = pair.key;
         Object value = pair.value;
         int index = calcIndex(key);
+        this.lastindex=index;
+        this.lastpair=pair;
 
         if (this.hashTable[index] == null) {
             this.hashTable[index] = new HashN2(1);
@@ -51,11 +57,8 @@ public class HashN implements PerfectHashing {
         }
         //if there is a collision in the second level
         else if(hashTable[index].collisionCheck(key)) {
-            ArrayList<Pair> temp = hashTable[index].getPairs();
-            temp.add(pair);
-            this.rebuildCounter++;
-            this.hashTable[index] = new HashN2(temp.size());
-            this.hashTable[index].batchInsert(temp);
+            System.out.println("collision in the second level");
+            this.rehash();
             this.elementCounter++;
             return true;
         }
@@ -82,8 +85,20 @@ public class HashN implements PerfectHashing {
         {
             if(this.SecondLevelTemp.get(i).size()>0)
             {
-                this.hashTable[i]=new HashN2(this.SecondLevelTemp.get(i).size());
-                counter+=this.hashTable[i].batchInsert(this.SecondLevelTemp.get(i));
+                if(this.hashTable[i]==null){
+                    System.out.println("there was no hashtable in the second level");
+                    System.out.println("i: "+i+" size: "+this.SecondLevelTemp.get(i).size());
+                    this.hashTable[i]=new HashN2(this.SecondLevelTemp.get(i).size());
+                    counter+=this.hashTable[i].batchInsert(this.SecondLevelTemp.get(i));
+                }
+                else{
+                    for(Pair pair:this.SecondLevelTemp.get(i)) {
+                        if (this.insert(pair)) {
+                            System.out.println("inserted successfully");
+                            counter++;
+                        }
+                    }
+                }
                 this.SecondLevelTemp.get(i).clear();
             }
             System.out.println("i: "+i+" counter: "+counter);
@@ -185,7 +200,11 @@ public class HashN implements PerfectHashing {
 
     @Override
     public void rehash() {
-
+        ArrayList<Pair> temp = hashTable[this.lastindex].getPairs();
+        temp.add(this.lastpair);
+        this.rebuildCounter+=this.hashTable[this.lastindex].getRebuildCounter()+1;
+        this.hashTable[this.lastindex] = new HashN2(temp.size());
+        this.hashTable[this.lastindex].batchInsert(temp);
     }
 
     @Override
