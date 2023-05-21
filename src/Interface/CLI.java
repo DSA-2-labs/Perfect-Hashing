@@ -98,8 +98,7 @@ public class CLI {
                     String fname = sc.next();
                     assert dictionary != null;
                     try {
-                        int count = dictionary.Batch_Insert(fname);
-                        System.out.println("Number of successfully added words = "+count);
+                        System.out.println("Number of successfully added words = "+dictionary.Batch_Insert(fname));
                     } catch (RuntimeException e) {
                         System.out.println("File not found!");
                         System.out.println(e);
@@ -110,8 +109,7 @@ public class CLI {
                     String fname = sc.next();
                     assert dictionary != null;
                     try {
-                        int count = dictionary.Batch_Delete(fname);
-                        System.out.println("Number of successfully added words = "+count);
+                        System.out.println("Number of successfully deleted words = "+dictionary.Batch_Delete(fname));
                     } catch (RuntimeException e) {
                         System.out.println("File not found!");
                     }

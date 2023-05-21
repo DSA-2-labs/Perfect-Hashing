@@ -47,10 +47,78 @@ public class N2Tests {
     @Test
     public void Test2()//mainly test insert function
     {
+        h=new HashN2(10);
+        h.insert(new Pair());
+    }
+    @Test
+    public void Test3()//mainly test delete function
+    {
 
     }
     @Test
-    public void Test3()
+    public void Test4()//mainly test for batch insert
+    {}
+    @Test
+    public void Test5()//mainly test for batch delete
+    {}
+    @Test
+    public void Test6()
+    {
+
+    }@Test
+    public void Test7()
+    {
+
+    }@Test
+    public void Test8()
+    {
+
+    }@Test
+    public void Test9()
+    {
+
+    }@Test
+    public void Test10()
+    {
+
+    }@Test
+    public void Test11()
+    {
+
+    }@Test
+    public void Test12()
+    {
+
+    }@Test
+    public void Test13()
+    {
+
+    }@Test
+    public void Test14()
+    {
+
+    }@Test
+    public void Test15()
+    {
+
+    }@Test
+    public void Test16()
+    {
+
+    }@Test
+    public void Test17()
+    {
+
+    }@Test
+    public void Test18()
+    {
+
+    }@Test
+    public void Test19()
+    {
+
+    }@Test
+    public void Test20()
     {
 
     }
