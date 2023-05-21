@@ -95,8 +95,8 @@ public class HashN2 implements PerfectHashing {
 
     @Override
     public int batchDelete(Pair[] pairs) {
-
         int counter = 0;
+        if (this.elementCounter==0) return counter;
         for(Pair p: pairs) {
             if(this.delete(p)) {
                 counter++;
