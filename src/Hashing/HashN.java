@@ -15,7 +15,6 @@ public class HashN implements PerfectHashing {
     private Pair lastpair;
     private int rebuildCounter;
 
-    private boolean firsttime;
     public HashN(int n) {
         int closestPowerOf2 = 1;
         int tmpBits = 0;
@@ -28,13 +27,12 @@ public class HashN implements PerfectHashing {
         this.hashTable = new HashN2[this.N];
         this.elementCounter = 0;
         this.rebuildCounter = 0;
+        this.hashFunction = MatrixRandomGenerator.generate(this.b, 32);
+        this.hashFunction.print();
         this.SecondLevelTemp=new ArrayList<ArrayList<Pair>>();
         for(int i=0;i<this.N;i++)
             this.SecondLevelTemp.add(new ArrayList<Pair>());
         this.lastindex=-1;
-        this.firsttime=true;
-        this.hashFunction = MatrixRandomGenerator.generate(this.b, 32);
-        hashFunction.print();
     }
 
     @Override
