@@ -21,58 +21,49 @@ public class Dictionary {
             dict = new HashN(Size);
         }
     }
-    public boolean insert_word(String key)
+    public boolean insert_word(Object key)
     {
-        Pair actualkey = new Pair();
-        actualkey.key = key.hashCode();
-        actualkey.value = key;
+        Pair actualkey = new Pair(key.hashCode(),key);
         return dict.insert(actualkey);
     }
-    public boolean delete_word(String key)
+    public boolean delete_word(Object key)
     {
-        Pair actualkey = new Pair();
-        actualkey.key = key.hashCode();
-        actualkey.value = key;
+        Pair actualkey = new Pair(key.hashCode(),key);
         return dict.delete(actualkey);
     }
-    public boolean search_word(String key)
+    public boolean search_word(Object key)
     {
         return dict.searchForKey(key.hashCode());
     }
     public int Batch_Insert(String fname) throws RuntimeException
     {
-//        ArrayList<Boolean> result=new ArrayList<>();
-        int counter=0;
+        ArrayList<Pair> pairs=new ArrayList<>();
+
         for (Object word:FileReader.loadfile(fname))
-        {
-            boolean added = insert_word((String) word);
-            counter = added? counter+1 : counter;
-//            String x= added ? "Word inserted successfully!" : "Word already exists!";
-//            System.out.println(word+" : "+ x);
-//            result.add(added);
-        }
+            pairs.add(new Pair(word.hashCode(),word));
+
         dict.print();
-        return counter;
+        return dict.batchInsert(pairs);
     }
     public int Batch_Delete(String fname) throws RuntimeException
     {
-//        ArrayList<Boolean> result=new ArrayList<>();
-        int counter = 0;
+        ArrayList<Pair> pairs1 = new ArrayList<>();
         for (Object word:FileReader.loadfile(fname))
         {
-            boolean deleted = delete_word((String) word);
-            counter=deleted? counter+1 : counter;
-//            String x= deleted ? "Word deleted successfully!" : "Word doesn't exist!";
-//            System.out.println(word+" : "+ x);
-//            result.add(deleted);
+            pairs1.add(new Pair(word.hashCode(),word));
         }
-        return counter;
+        Pair[]pairs = new Pair[pairs1.size()];
+        for (int i=0;i<pairs.length;i++)
+        {
+            pairs[i] = pairs1.get(i);
+        }
+        return dict.batchDelete(pairs);
     }
     public ArrayList<Boolean> search_multiword(String fname) throws RuntimeException
     {
         ArrayList<Boolean> result=new ArrayList<>();
         for (Object word: FileReader.loadfile(fname)){
-            boolean found = search_word((String) word);
+            boolean found = search_word(word);
             String x= found ? "Found" : "Not Found";
             System.out.println(word+" : "+ x);
             result.add(found);
