@@ -105,6 +105,10 @@ public class N2Tests {
         h = new HashN2(pair.length);
         assertEquals(0,h.batchDelete(pair));
 
+        ArrayList<Pair> p = FileReader.loadpairslist("/home/mahmoud/Test1.txt");
+        assertEquals(10000,h.batchInsert(p));
+        assertEquals(10000,h.batchDelete(pair));
+
     }
     @Test
     public void Test6()
