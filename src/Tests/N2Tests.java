@@ -7,7 +7,7 @@ import static org.junit.Assert.*;
 
 
 public class N2Tests {
-    HashN2 h;
+    HashN2 h ;
     private void insertcases(Object...objs)
     {
         h = new HashN2(objs.length);
