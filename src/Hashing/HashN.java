@@ -76,34 +76,10 @@ public class HashN implements PerfectHashing {
     public int batchInsert(List<Pair> pairs) {
         int counter = 0;
         for(Pair pair : pairs) {
-            int key = pair.key;
-            Object value = pair.value;
-            int index = calcIndex(key);
-            this.SecondLevelTemp.get(index).add(pair);
-        }
-        for(int i=0;i<this.N;i++)
-        {
-            if(this.SecondLevelTemp.get(i).size()>0)
-            {
-                if(this.hashTable[i]==null||this.hashTable[i].getElementCounter()==0){
-                    this.hashTable[i]=new HashN2(this.SecondLevelTemp.get(i).size());
-                    int count=this.hashTable[i].batchInsert(this.SecondLevelTemp.get(i));
-                    counter+=count;
-                    elementCounter+=count;
-                    rebuildCounter+=this.SecondLevelTemp.get(i).size()-1;
-                }
-                else{
-                    for(Pair pair:this.SecondLevelTemp.get(i)) {
-                        if (this.insert(pair)) {
-                            System.out.println("inserted successfully");
-                            counter++;
-                        }
-                    }
-                }
-                this.SecondLevelTemp.get(i).clear();
+            if(this.insert(pair)) {
+                counter++;
             }
         }
-        this.print();
         return counter;
     }
 
