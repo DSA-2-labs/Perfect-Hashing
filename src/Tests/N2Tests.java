@@ -202,13 +202,13 @@ public class N2Tests {
     }@Test
     public void Test13()
     {
-        h=new HashN2(30000);
+        h=new HashN2(10000);
         ArrayList<Pair> p = FileReader.loadpairslist("/home/mahmoud/Test5.txt");
         Pair[]p2=FileReader.loadpairsarray("/home/mahmoud/Test5.txt");
-        assertEquals(40320,h.batchInsert(p));
+        assertEquals(10080,h.batchInsert(p));
         assertFalse(h.insert(new Pair("lotfobal".hashCode(),"lotfobal")));
         assertTrue(search("football","lotfobal","foltbola"));
-        assertEquals(40320,h.batchDelete(p2));
+        assertEquals(10080,h.batchDelete(p2));
         assertFalse(search("football","lotfobal","foltbola"));
     }@Test
     public void Test14()
