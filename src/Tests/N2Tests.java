@@ -190,7 +190,7 @@ public class N2Tests {
     @Test
     public void Test12()
     {
-        h=new HashN2(1000);
+        h=new HashN2(5000);
         ArrayList<Pair> p = FileReader.loadpairslist("/home/mahmoud/Test4.txt");
         Pair[]p2=FileReader.loadpairsarray("/home/mahmoud/Test4.txt");
         assertEquals(5040,h.batchInsert(p));
@@ -202,24 +202,24 @@ public class N2Tests {
     }@Test
     public void Test13()
     {
-        h=new HashN2(40320);
+        h=new HashN2(30000);
         ArrayList<Pair> p = FileReader.loadpairslist("/home/mahmoud/Test5.txt");
         Pair[]p2=FileReader.loadpairsarray("/home/mahmoud/Test5.txt");
         assertEquals(40320,h.batchInsert(p));
-        assertFalse(h.insert(new Pair("lotfoball".hashCode(),"lotfoball")));
-        assertTrue(search("football","lotfoball","foltbola"));
+        assertFalse(h.insert(new Pair("lotfobal".hashCode(),"lotfobal")));
+        assertTrue(search("football","lotfobal","foltbola"));
         assertEquals(40320,h.batchDelete(p2));
-        assertFalse(search("football","lotfoball","foltbola"));
+        assertFalse(search("football","lotfobal","foltbola"));
     }@Test
     public void Test14()
     {
         h=new HashN2(20000);
         ArrayList<Pair> p = FileReader.loadpairslist("/home/mahmoud/Test6.txt");
         Pair[]p2=FileReader.loadpairsarray("/home/mahmoud/Test6.txt");
-        assertEquals(60,h.batchInsert(p));
+        assertEquals(20160,h.batchInsert(p));
         assertFalse(h.insert(new Pair("mid exam".hashCode(),"mid exam")));
         assertTrue(search("max emid","mid emax","mid exam"));
-        assertEquals(60,h.batchDelete(p2));
+        assertEquals(20160,h.batchDelete(p2));
         assertFalse(search("max emid","mid emax","mid exam","mid "));
     }@Test
     public void Test15()
@@ -247,7 +247,7 @@ public class N2Tests {
     @Test
     public void Test18()
     {
-        h=new HashN2(6);
+        h=new HashN2(50);
         ArrayList<Pair> P = FileReader.loadpairslist("/home/mahmoud/Test7.txt");
         Pair[]p2=FileReader.loadpairsarray("/home/mahmoud/Test7.txt");
         assertEquals(57,h.batchInsert(P));
