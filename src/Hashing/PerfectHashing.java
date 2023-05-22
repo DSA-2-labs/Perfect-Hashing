@@ -7,9 +7,9 @@ public interface PerfectHashing {
     int batchInsert(List<Pair> pairs);
     boolean delete(Pair pair);
     int batchDelete(Pair[] pairs);
-    Object lookup(int key);
-    Object[] BatchLookup(int[] keys);
-    boolean searchForKey(int key);
+    Object lookup(long key);
+    Object[] BatchLookup(long[] keys);
+    boolean searchForKey(long key);
     void rehash();
     int getRebuildCounter();
     void print();

@@ -21,26 +21,36 @@ public class Dictionary {
             dict = new HashN(Size);
         }
     }
+    public static long stringToLong(String str) {
+        StringBuilder binary = new StringBuilder();
+        for (int i = 0; i < str.length(); i++) {
+            int ascii = (int) str.charAt(i);
+//            System.out.println(str.charAt(i) + "-->" + ascii);
+            String binaryStr = Integer.toBinaryString(ascii);
+            binary.append(binaryStr);
+        }
+        return Long.parseLong(binary.toString(), 2);
+    }
     public boolean insert_word(Object key)
     {
-        Pair actualkey = new Pair(key.hashCode(),key);
+        Pair actualkey = new Pair(stringToLong((String) key), key);
         return dict.insert(actualkey);
     }
     public boolean delete_word(Object key)
     {
-        Pair actualkey = new Pair(key.hashCode(),key);
+        Pair actualkey = new Pair(stringToLong((String) key),key);
         return dict.delete(actualkey);
     }
     public boolean search_word(Object key)
     {
-        return dict.searchForKey(key.hashCode());
+        return dict.searchForKey(stringToLong((String) key));
     }
     public int Batch_Insert(String fname) throws RuntimeException
     {
         ArrayList<Pair> pairs=new ArrayList<>();
 
         for (Object word:FileReader.loadfile(fname))
-            pairs.add(new Pair(word.hashCode(),word));
+            pairs.add(new Pair(stringToLong((String) word),word));
 
         return dict.batchInsert(pairs);
     }
@@ -49,7 +59,7 @@ public class Dictionary {
         ArrayList<Pair> pairs1 = new ArrayList<>();
         for (Object word:FileReader.loadfile(fname))
         {
-            pairs1.add(new Pair(word.hashCode(),word));
+            pairs1.add(new Pair(stringToLong((String) word),word));
         }
         Pair[]pairs = new Pair[pairs1.size()];
         for (int i=0;i<pairs.length;i++)
@@ -80,6 +90,4 @@ public class Dictionary {
         }
         return -1;
     }
-
-
 }

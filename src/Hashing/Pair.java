@@ -1,10 +1,10 @@
 package Hashing;
 
 public class Pair {
-    public int key;
+    public long key;
     public Object value;
     public Pair(){}
-    public Pair(int key,Object value)
+    public Pair(long key,Object value)
     {
         this.key=key;
         this.value=value;

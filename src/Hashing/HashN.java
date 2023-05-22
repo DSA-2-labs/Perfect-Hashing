@@ -27,7 +27,7 @@ public class HashN implements PerfectHashing {
         this.hashTable = new HashN2[this.N];
         this.elementCounter = 0;
         this.rebuildCounter = 0;
-        this.hashFunction = MatrixRandomGenerator.generate(this.b, 32);
+        this.hashFunction = MatrixRandomGenerator.generate(this.b, 64);
         this.hashFunction.print();
         this.SecondLevelTemp=new ArrayList<ArrayList<Pair>>();
         for(int i=0;i<this.N;i++)
@@ -37,7 +37,7 @@ public class HashN implements PerfectHashing {
 
     @Override
     public boolean insert(Pair pair) {
-        int key = pair.key;
+        long key = pair.key;
         Object value = pair.value;
         int index = calcIndex(key);
         this.lastindex=index;
@@ -85,7 +85,7 @@ public class HashN implements PerfectHashing {
 
     @Override
     public boolean delete(Pair pair) {
-        int key = pair.key;
+        long key = pair.key;
         int index = calcIndex(key);
         if(this.hashTable[index] == null) {
             System.out.println("Word doesn't exist!");
@@ -106,7 +106,7 @@ public class HashN implements PerfectHashing {
     public int batchDelete(Pair[] pairs) {
         int counter = 0;
         for(Pair pair : pairs) {
-            int key = pair.key;
+            long key = pair.key;
             int index = calcIndex(key);
             if(this.hashTable[index] == null) {
                 System.out.println("Word doesn't exist!");
@@ -123,7 +123,7 @@ public class HashN implements PerfectHashing {
     }
 
     @Override
-    public Object lookup(int key) {
+    public Object lookup(long key) {
         int index = calcIndex(key);
         if(this.hashTable[index] == null) {
             System.out.println("Word doesn't exist!");
@@ -139,10 +139,10 @@ public class HashN implements PerfectHashing {
     }
 
     @Override
-    public Object[] BatchLookup(int[] keys) {
+    public Object[] BatchLookup(long[] keys) {
         Object[] values = new Object[keys.length];
         for(int i = 0; i < keys.length; i++) {
-            int key = keys[i];
+            long key = keys[i];
             int index = calcIndex(key);
             if(this.hashTable[index] == null) {
                 System.out.println("Word doesn't exist!");
@@ -160,7 +160,7 @@ public class HashN implements PerfectHashing {
     }
 
     @Override
-    public boolean searchForKey(int key) {
+    public boolean searchForKey(long key) {
         int index = calcIndex(key);
         if(this.hashTable[index] == null) {
             System.out.println("Word doesn't exist!");
@@ -203,7 +203,7 @@ public class HashN implements PerfectHashing {
             }
         }
     }
-    private int calcIndex(int key) {
+    private int calcIndex(long key) {
         Matrix keyMatrix = Matrix.convertToMatrix(key);
         Matrix indexMatrix = this.hashFunction.multiply(keyMatrix);
         return Matrix.convertMatrixToIndex(indexMatrix);

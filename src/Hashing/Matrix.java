@@ -3,12 +3,12 @@ package Hashing;
 public class Matrix {
     int rows;
     int cols;
-    int[][] data;
+    long[][] data;
 
     public Matrix(int rows, int cols) {
         this.rows = rows;
         this.cols = cols;
-        this.data = new int[rows][cols];
+        this.data = new long[rows][cols];
     }
 
     public Matrix multiply(Matrix other) {
@@ -28,12 +28,13 @@ public class Matrix {
     }
 
     /*
-    this function converts the key to 32 bits in matrix
+    this function converts the key to 64 bits in matrix
      */
-    public static Matrix convertToMatrix(int key) {
-        Matrix ans = new Matrix(32, 1);
-        for(int i = 0; i < 32; i++){
+    public static Matrix convertToMatrix(long key) {
+        Matrix ans = new Matrix(64, 1);
+        for(int i = 0; i < 64; i++){
             ans.data[i][0] = key & 1; // same as %2
+            System.out.println("--> " + ans.data[i][0]);
             key >>= 1; // same as /2
         }
         return ans;
