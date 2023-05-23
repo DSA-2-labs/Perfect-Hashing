@@ -33,16 +33,19 @@ public class Dictionary {
     }
     public boolean insert_word(Object key)
     {
+        if (((String) key).length()==0) return false;
         Pair actualkey = new Pair(stringToLong((String) key), key);
         return dict.insert(actualkey);
     }
     public boolean delete_word(Object key)
     {
+        if (((String) key).length()==0) return false;
         Pair actualkey = new Pair(stringToLong((String) key),key);
         return dict.delete(actualkey);
     }
     public boolean search_word(Object key)
     {
+        if (((String) key).length()==0) return false;
         return dict.searchForKey(stringToLong((String) key));
     }
     public int Batch_Insert(String fname) throws RuntimeException

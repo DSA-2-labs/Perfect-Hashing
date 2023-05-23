@@ -1,5 +1,6 @@
 package Application.FileReader;
 
+import Application.Dictionary;
 import Hashing.Pair;
 
 import java.io.BufferedReader;
@@ -24,7 +25,7 @@ public class FileReader {
         try (BufferedReader br = new BufferedReader(new java.io.FileReader(fname))) {
             Object line;
             while ((line = br.readLine()) != null) {
-                pairs.add(new Pair(line.hashCode(),line));
+                pairs.add(new Pair(Dictionary.stringToLong((String) line),line));
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -37,7 +38,7 @@ public class FileReader {
         try (BufferedReader br = new BufferedReader(new java.io.FileReader(fname))) {
             Object line;
             while ((line = br.readLine()) != null) {
-                pairs.add(new Pair(line.hashCode(),line));
+                pairs.add(new Pair(Dictionary.stringToLong((String) line),line));
             }
             p = new Pair[pairs.size()];
             for (int i = 0; i < pairs.size(); i++) {
