@@ -34,7 +34,7 @@ public class Matrix {
         Matrix ans = new Matrix(64, 1);
         for(int i = 0; i < 64; i++){
             ans.data[i][0] = key & 1; // same as %2
-            System.out.println("--> " + ans.data[i][0]);
+            //System.out.println("--> " + ans.data[i][0]);
             key >>= 1; // same as /2
         }
         return ans;
@@ -53,11 +53,11 @@ public class Matrix {
     }
 
     public void print(){
-        for(int i = 0; i < this.rows; i++){
-            for(int j = 0; j < this.cols; j++){
-                System.out.print(this.data[i][j]);
-            }
-            System.out.println();
-        }
+//        for(int i = 0; i < this.rows; i++){
+//            for(int j = 0; j < this.cols; j++){
+//                System.out.print(this.data[i][j]);
+//            }
+//            System.out.println();
+//        }
     }
 }

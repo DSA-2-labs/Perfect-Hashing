@@ -28,7 +28,7 @@ public class HashN implements PerfectHashing {
         this.elementCounter = 0;
         this.rebuildCounter = 0;
         this.hashFunction = MatrixRandomGenerator.generate(this.b, 64);
-        this.hashFunction.print();
+       // this.hashFunction.print();
         this.SecondLevelTemp=new ArrayList<ArrayList<Pair>>();
         for(int i=0;i<this.N;i++)
             this.SecondLevelTemp.add(new ArrayList<Pair>());
@@ -196,12 +196,12 @@ public class HashN implements PerfectHashing {
 
     @Override
     public void print() {
-        for(int i = 0; i < this.N; i++) {
-            if(this.hashTable[i] != null) {
-                System.out.println("first level index: " + i);
-                this.hashTable[i].print();
-            }
-        }
+//        for(int i = 0; i < this.N; i++) {
+//            if(this.hashTable[i] != null) {
+//                System.out.println("first level index: " + i);
+//                this.hashTable[i].print();
+//            }
+//        }
     }
     private int calcIndex(long key) {
         Matrix keyMatrix = Matrix.convertToMatrix(key);

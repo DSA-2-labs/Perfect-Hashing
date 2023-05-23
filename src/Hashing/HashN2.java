@@ -23,7 +23,7 @@ public class HashN2 implements PerfectHashing {
             }
             this.rebuild = 0;
             this.N = closestPowerOf2;
-            System.out.println(this.N);
+            //System.out.println(this.N);
             this.b = tmpBits;
             this.hashTable = new Pair[N];
             this.elementCounter = 0;
@@ -154,12 +154,12 @@ public class HashN2 implements PerfectHashing {
         return this.N;
     }
     public void print(){
-        for(int i = 0; i < N; i++){
-            if(this.hashTable[i] == null)
-                continue;
-            System.out.printf("Index %d -> key: %d, value: ", i, this.hashTable[i].key);
-            System.out.println(this.hashTable[i].value);
-        }
+//        for(int i = 0; i < N; i++){
+//            if(this.hashTable[i] == null)
+//                continue;
+//            System.out.printf("Index %d -> key: %d, value: ", i, this.hashTable[i].key);
+//            System.out.println(this.hashTable[i].value);
+//        }
     }
     public ArrayList<Pair> getPairs(){
         ArrayList<Pair> pairs = new ArrayList<>();
