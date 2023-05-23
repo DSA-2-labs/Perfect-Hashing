@@ -212,18 +212,18 @@ public class N2Tests {
         assertEquals(10080,h.batchDelete(p2));
         assertFalse(search("football","lotfobal","foltbola"));
     }
-//    @Test
-//    public void Test14()
-//    {
-//        h=new HashN2(20160);
-//        ArrayList<Pair> p = FileReader.loadpairslist("/home/mahmoud/Test6.txt");
-//        Pair[]p2=FileReader.loadpairsarray("/home/mahmoud/Test6.txt");
-//        assertEquals(20160,h.batchInsert(p));
-//        assertFalse(h.insert(new Pair(Dictionary.stringToLong("mid exam"),"mid exam")));
-//        assertTrue(search("max emid","mid emax","mid exam"));
-//        assertEquals(20160,h.batchDelete(p2));
-//        assertFalse(search("max emid","mid emax","mid exam","mid "));
-//    }
+    @Test
+    public void Test14()
+    {
+        h=new HashN2(20160);
+        ArrayList<Pair> p = FileReader.loadpairslist("/home/mahmoud/Test6.txt");
+        Pair[]p2=FileReader.loadpairsarray("/home/mahmoud/Test6.txt");
+        assertEquals(20160,h.batchInsert(p));
+        assertFalse(h.insert(new Pair(Dictionary.stringToLong("mid exam"),"mid exam")));
+        assertTrue(search("max emid","mid emax","mid exam"));
+        assertEquals(20160,h.batchDelete(p2));
+        assertFalse(search("max emid","mid emax","mid exam","mid "));
+    }
     @Test
     public void Test15()
     {
