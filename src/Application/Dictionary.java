@@ -5,6 +5,7 @@ import Hashing.HashN;
 import Hashing.HashN2;
 import Hashing.Pair;
 import Hashing.PerfectHashing;
+import pairds.pairds;
 
 import java.util.ArrayList;
 
@@ -48,7 +49,7 @@ public class Dictionary {
         if (((String) key).length()==0) return false;
         return dict.searchForKey(stringToLong((String) key));
     }
-    public int Batch_Insert(String fname) throws RuntimeException
+    public pairds Batch_Insert(String fname) throws RuntimeException
     {
         ArrayList<Pair> pairs=new ArrayList<>();
 
@@ -57,7 +58,7 @@ public class Dictionary {
 
         return dict.batchInsert(pairs);
     }
-    public int Batch_Delete(String fname) throws RuntimeException
+    public pairds Batch_Delete(String fname) throws RuntimeException
     {
         ArrayList<Pair> pairs1 = new ArrayList<>();
         for (Object word:FileReader.loadfile(fname))
@@ -86,11 +87,11 @@ public class Dictionary {
     {
         return dict.getRebuildCounter();
     }
-    public int get_no_elements(){
+    public boolean sizelimit(){
         if(dict instanceof HashN2)
         {
-            return ((HashN2) dict).getElementCounter();
+            if(((HashN2) dict).getN()==((HashN2) dict).getElementCounter()) return true;
         }
-        return -1;
+        return false;
     }
 }

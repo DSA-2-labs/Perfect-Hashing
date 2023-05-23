@@ -3,6 +3,7 @@ package Interface;
 import Application.Dictionary;
 
 import java.util.Scanner;
+import pairds.pairds;
 
 public class CLI {
     public void i()
@@ -56,7 +57,7 @@ public class CLI {
                     if (dictionary.insert_word(word))
                         System.out.println(word + " : " + "Word inserted successfully!");
                     else {
-                        if(dictionary.get_no_elements() == size)
+                        if(dictionary.sizelimit())
                             System.out.println(word + " : " + "Size exceeded!!");
                         else
                             System.out.println(word + " : "+"word is already exist!");
@@ -98,10 +99,11 @@ public class CLI {
                     String fname = sc.next();
                     assert dictionary != null;
                     try {
-                        System.out.println("Number of successfully added words = "+dictionary.Batch_Insert(fname));
+                        pairds count=dictionary.Batch_Insert(fname);
+                        System.out.println("Number of successfully added words = "+count.success);
+                        System.out.println("Number of existing added words = "+count.fail);
                     } catch (RuntimeException e) {
                         System.out.println("File not found!");
-                        System.out.println(e);
                     }
                 }
                 case 6 -> {
@@ -109,7 +111,9 @@ public class CLI {
                     String fname = sc.next();
                     assert dictionary != null;
                     try {
-                        System.out.println("Number of successfully deleted words = "+dictionary.Batch_Delete(fname));
+                        pairds count=dictionary.Batch_Delete(fname);
+                        System.out.println("Number of successfully deleted words = "+count.success);
+                        System.out.println("Number of non existing words = "+count.fail);
                     } catch (RuntimeException e) {
                         System.out.println("File not found!");
                     }

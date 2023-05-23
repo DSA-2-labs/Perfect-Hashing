@@ -1,11 +1,18 @@
 package Hashing;
 
+import pairds.pairds;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class HashN implements PerfectHashing {
     private int N;
     private int b; //number of bits: M = 2^b
+
+    public HashN2[] getHashTable() {
+        return hashTable;
+    }
+
     private HashN2[] hashTable;
     private Matrix hashFunction;
     ArrayList<ArrayList<Pair>> SecondLevelTemp;
@@ -50,12 +57,10 @@ public class HashN implements PerfectHashing {
             return true;
         }
         else if (this.hashTable[index].searchForKey(key)){
-            System.out.println("Word already exists!");
             return false;
         }
         //if there is a collision in the second level
         else if(hashTable[index].collisionCheck(key)) {
-            System.out.println("collision in the second level");
             this.rehash();
             this.elementCounter++;
             return true;
@@ -73,14 +78,18 @@ public class HashN implements PerfectHashing {
     }
 
     @Override
-    public int batchInsert(List<Pair> pairs) {
-        int counter = 0;
+    public pairds batchInsert(List<Pair> pairs) {
+        pairds p = new pairds();
         for(Pair pair : pairs) {
             if(this.insert(pair)) {
-                counter++;
+                p.success++;
+            }
+            else
+            {
+                p.fail++;
             }
         }
-        return counter;
+        return p;
     }
 
     @Override
@@ -88,7 +97,6 @@ public class HashN implements PerfectHashing {
         long key = pair.key;
         int index = calcIndex(key);
         if(this.hashTable[index] == null) {
-            System.out.println("Word doesn't exist!");
             return false;
         }
         else if(this.hashTable[index].searchForKey(key)) {
@@ -97,43 +105,38 @@ public class HashN implements PerfectHashing {
             return true;
         }
         else {
-            System.out.println("Word doesn't exist!");
             return false;
         }
     }
 
     @Override
-    public int batchDelete(Pair[] pairs) {
-        int counter = 0;
+    public pairds batchDelete(Pair[] pairs) {
+        pairds p = new pairds();
         for(Pair pair : pairs) {
             long key = pair.key;
             int index = calcIndex(key);
-            if(this.hashTable[index] == null) {
-                System.out.println("Word doesn't exist!");
-            }
-            else if(this.hashTable[index].searchForKey(key)) {
+            if(this.hashTable[index].searchForKey(key)) {
                 this.hashTable[index].delete(pair);
-                counter++;
+                p.success++;
             }
-            else {
-                System.out.println("Word doesn't exist!");
+            else
+            {
+                p.fail++;
             }
         }
-        return counter;
+        return p;
     }
 
     @Override
     public Object lookup(long key) {
         int index = calcIndex(key);
         if(this.hashTable[index] == null) {
-            System.out.println("Word doesn't exist!");
             return null;
         }
         else if(this.hashTable[index].searchForKey(key)) {
             return this.hashTable[index].lookup(key);
         }
         else {
-            System.out.println("Word doesn't exist!");
             return null;
         }
     }
@@ -145,14 +148,12 @@ public class HashN implements PerfectHashing {
             long key = keys[i];
             int index = calcIndex(key);
             if(this.hashTable[index] == null) {
-                System.out.println("Word doesn't exist!");
                 values[i] = null;
             }
             else if(this.hashTable[index].searchForKey(key)) {
                 values[i] = this.hashTable[index].lookup(key);
             }
             else {
-                System.out.println("Word doesn't exist!");
                 values[i] = null;
             }
         }
@@ -163,14 +164,12 @@ public class HashN implements PerfectHashing {
     public boolean searchForKey(long key) {
         int index = calcIndex(key);
         if(this.hashTable[index] == null) {
-            System.out.println("Word doesn't exist!");
             return false;
         }
         else if(this.hashTable[index].searchForKey(key)) {
             return true;
         }
         else {
-            System.out.println("Word doesn't exist!");
             return false;
         }
     }

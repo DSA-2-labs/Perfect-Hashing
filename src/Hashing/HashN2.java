@@ -1,5 +1,7 @@
 package Hashing;
 
+import pairds.pairds;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -66,14 +68,18 @@ public class HashN2 implements PerfectHashing {
     }
 
     @Override
-    public int batchInsert(List<Pair> pairs) {
-        int counter = 0;
+    public pairds batchInsert(List<Pair> pairs) {
+        pairds pair = new pairds();
         for(Pair p: pairs) {
             if(this.insert(p)) {
-                counter++;
+                pair.success++;
+            }
+            else
+            {
+                pair.fail++;
             }
         }
-        return counter;
+        return pair;
     }
 
     @Override
@@ -94,15 +100,19 @@ public class HashN2 implements PerfectHashing {
     }
 
     @Override
-    public int batchDelete(Pair[] pairs) {
-        int counter = 0;
-        if (this.elementCounter==0) return counter;
+    public pairds batchDelete(Pair[] pairs) {
+        pairds pair = new pairds();
+        if (this.elementCounter==0) return pair;
         for(Pair p: pairs) {
             if(this.delete(p)) {
-                counter++;
+                pair.success++;
+            }
+            else
+            {
+                pair.fail++;
             }
         }
-        return counter;
+        return pair;
     }
 
     @Override

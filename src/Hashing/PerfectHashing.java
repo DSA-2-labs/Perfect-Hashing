@@ -1,12 +1,13 @@
 package Hashing;
 
 import java.util.List;
+import pairds.pairds;
 
 public interface PerfectHashing {
     boolean insert(Pair pair);
-    int batchInsert(List<Pair> pairs);
+    pairds batchInsert(List<Pair> pairs);
     boolean delete(Pair pair);
-    int batchDelete(Pair[] pairs);
+    pairds batchDelete(Pair[] pairs);
     Object lookup(long key);
     Object[] BatchLookup(long[] keys);
     boolean searchForKey(long key);
