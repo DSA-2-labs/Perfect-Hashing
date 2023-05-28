@@ -3,11 +3,11 @@
 ## Contents:
 1. [Introduction](#introduction)<br>
 2. [Universal Hashing](#universal)<br>
-  2.1 [Thereom 1](#thereom1)<br>
+  2.1 [Thereom 1](#thereom)<br>
   2.2 [Constructing a Universal Hash Family: The Matrix Method](#matrix)<br>
 3. [Perfect Hashing](#PerfectHashing)<br>
-  3.1 [O(N<sup>2</sup>) - Space Solution](#N2)<br>
-  3.2 [O(N) - Space Solution](#N)<br>
+  3.1 [O(N<sup>2</sup>) - Space Solution](#sq)<br>
+  3.2 [O(N) - Space Solution](#lin)<br>
 4. [Application](#application)<br>
   4.1 [English Dictionary](#dictionary)<br>
   4.2 [Command Line Interface](#cli)<br>
@@ -29,7 +29,7 @@ A probability distribution H over hash functions from U to {1, ..., M} is univer
 Pr[h(x) = h(y)] ≤ 1/M
 
 
-### 2.1 Thereom 1 <a name="thereom1"></a>
+### 2.1 Thereom 1 <a name="thereom"></a>
 If H is universal, then for any set S ⊂ U, for any x ∈ U (that we might want to insert or lookup), for a random h taken from H, the expected number of collisions between x and other elements in S is at most N/M.
 
 
@@ -44,11 +44,11 @@ We can show that for x = y, Pr[h(x) = h(y)] = 1/M = 1/2<sup>b</sup>
 
 ## 3. Perfect Hashing: <a name="PerfectHashing"></a>
 
-### 3.1 O(N<sup>2</sup>) - Space Solution <a name="N2"></a>
+### 3.1 O(N<sup>2</sup>) - Space Solution <a name="sq"></a>
 Say we are willing to have a table whose size is quadratic in the size N of our dictionary S. Then, here is an easy method. Let H be universal and M = N<sup>2</sup>. Pick a random h from H and try it out, hashing everything in S. So, we just try it, and if we got any collisions, we just try a new h. On average, we will only need to do this twice.
 
 
-### 3.2 O(N)-Space Solution <a name="N"></a>
+### 3.2 O(N)-Space Solution <a name="lin"></a>
 The main idea for this method is to use universal hash functions in a 2-level scheme. The method is as follows. We will first hash into a table of size N using universal hashing. This will produce some collisions. However, we will then rehash each bin using Method 1, squaring the size of the bin to get zero collisions. So, the way to think of this scheme is that we have a first-level hash function h and first-level table A, and then N second-level hash functions h1, ..., hN and N second-level tables A1, ..., AN. To look up an element x, we first compute i = h(x) and then find the element in Ai[hi(x)].
 
 ---
