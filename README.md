@@ -1,7 +1,7 @@
 # Perfect Hashing
 
 ## Contents:
-- [Introduction](#Introduction)
+- [Introduction](#1.-Introduction)
 - [Universal Hashing](#Universal-Hashing)
   - [Thereom 1](#Thereom-1)
   - [Constructing a Universal Hash Family: The Matrix Method](#Constructing-a-Universal-Hash-Family:-The-Matrix-Method)
