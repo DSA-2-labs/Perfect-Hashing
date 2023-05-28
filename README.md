@@ -1,19 +1,19 @@
 # Perfect Hashing
 
 ## Contents:
-1. [Introduction](#introduction)
-2. [Universal Hashing](#universal)
-  2.1 [Thereom 1](#thereom1)
-  2.2 [Constructing a Universal Hash Family: The Matrix Method](#matrix)
-3. [Perfect Hashing](#PerfectHashing)
-  3.1 [O(N<sup>2</sup>) - Space Solution](#N2)
-  3.2 [O(N) - Space Solution](#N)
-4. [Application](#Application)
-  4.1 [English Dictionary](#Dictionary)
-  4.2 [Command Line Interface](#cli)
-5. [Comparison](#comparison)
-  5.1 [Number of rebuilds](#rebuilds)
-  5.2 [Space](#space)
+1. [Introduction](#introduction)<br>
+2. [Universal Hashing](#universal)<br>
+  2.1 [Thereom 1](#thereom1)<br>
+  2.2 [Constructing a Universal Hash Family: The Matrix Method](#matrix)<br>
+3. [Perfect Hashing](#PerfectHashing)<br>
+  3.1 [O(N<sup>2</sup>) - Space Solution](#N2)<br>
+  3.2 [O(N) - Space Solution](#N)<br>
+4. [Application](#application)<br>
+  4.1 [English Dictionary](#dictionary)<br>
+  4.2 [Command Line Interface](#cli)<br>
+5. [Comparison](#comparison)<br>
+  5.1 [Number of rebuilds](#rebuilds)<br>
+  5.2 [Space](#space)<br>
 
 ---
 
