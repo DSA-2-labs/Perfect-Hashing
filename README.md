@@ -24,7 +24,7 @@ hash table as described in sections 3 and 4.
 
 ---
 
-## 2. Universal Hashing
+## Universal Hashing
 A probability distribution H over hash functions from U to {1, ..., M} is universal if for all x=y in U, we have<br>
 Pr[h(x) = h(y)] ≤ 1/M
 
