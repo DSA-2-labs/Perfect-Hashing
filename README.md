@@ -1,7 +1,7 @@
 # Perfect Hashing
 
 ## Contents:
-- [Introduction](#1.-Introduction)
+- [Introduction](#introduction)
 - [Universal Hashing](#Universal-Hashing)
   - [Thereom 1](#Thereom-1)
   - [Constructing a Universal Hash Family: The Matrix Method](#Constructing-a-Universal-Hash-Family:-The-Matrix-Method)
@@ -17,7 +17,7 @@
 
 ---
 
-## 1. Introduction
+## 1. Introduction <a name="introduction"></a>
 Implementation of a perfect hashing data structure. We say a hash function is perfect for S if all lookups involve O(1) work. In section 2, background about
 universal hashing is provided. Sections 3 and 4 describe two methods for constructing perfect hash functions for a given set S. It's required to design, analyze and implement a perfect
 hash table as described in sections 3 and 4.
