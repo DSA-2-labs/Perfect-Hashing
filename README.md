@@ -1,19 +1,19 @@
 # Perfect Hashing
 
 ## Contents:
-1. [Introduction](#introduction)<br>
-2. [Universal Hashing](#universal)<br>
-  2.1 [Thereom 1](#thereom)<br>
-  2.2 [Constructing a Universal Hash Family: The Matrix Method](#matrix)<br>
-3. [Perfect Hashing](#PerfectHashing)<br>
-  3.1 [O(N<sup>2</sup>) - Space Solution](#sq)<br>
-  3.2 [O(N) - Space Solution](#lin)<br>
-4. [Application](#application)<br>
-  4.1 [English Dictionary](#dictionary)<br>
-  4.2 [Command Line Interface](#cli)<br>
-5. [Comparison](#comparison)<br>
-  5.1 [Number of rebuilds](#rebuilds)<br>
-  5.2 [Space](#space)<br>
+- [1. Introduction](#introduction)<br>
+- [2. Universal Hashing](#universal)<br>
+  - [2.1 Thereom 1](#thereom)<br>
+  - [2.2 Constructing a Universal Hash Family: The Matrix Method](#matrix)<br>
+- [3. Perfect Hashing](#perfect)<br>
+  - [3.1 O(N<sup>2</sup>) - Space Solution](#sq)<br>
+  - [3.2 O(N) - Space Solution](#lin)<br>
+- [4. Application](#application)<br>
+  - [4.1 English Dictionary](#dictionary)<br>
+  - [4.2 Command Line Interface](#cli)<br>
+- [5. Comparison](#comparison)<br>
+  - [5.1 Number of rebuilds](#rebuilds)<br>
+  - [5.2 Space](#space)<br>
 
 ---
 
@@ -42,7 +42,7 @@ We can show that for x = y, Pr[h(x) = h(y)] = 1/M = 1/2<sup>b</sup>
 
 ---
 
-## 3. Perfect Hashing: <a name="PerfectHashing"></a>
+## 3. Perfect Hashing: <a name="perfect"></a>
 
 ### 3.1 O(N<sup>2</sup>) - Space Solution <a name="sq"></a>
 Say we are willing to have a table whose size is quadratic in the size N of our dictionary S. Then, here is an easy method. Let H be universal and M = N<sup>2</sup>. Pick a random h from H and try it out, hashing everything in S. So, we just try it, and if we got any collisions, we just try a new h. On average, we will only need to do this twice.
