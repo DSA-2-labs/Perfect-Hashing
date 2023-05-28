@@ -1,19 +1,19 @@
 # Perfect Hashing
 
 ## Contents:
-- [Introduction](#introduction)
-- [Universal Hashing](#Universal-Hashing)
-  - [Thereom 1](#Thereom-1)
-  - [Constructing a Universal Hash Family: The Matrix Method](#Constructing-a-Universal-Hash-Family:-The-Matrix-Method)
-- [Perfect Hashing](#Perfect-Hashing)
-  - [O(N<sup>2</sup>) - Space Solution](#O(N<sup>2</sup>)-Space-Solution)
-  - [O(N) - Space Solution](#O(N)-Space-Solution)
-- [Application](#Application)
-  - [English Dictionary](#English-Dictionary)
-  - [Command Line Interface](#Command-Line-Interface)
-- [Comparison](#Comparison)
-  - [Number of rebuilds](#Number-of-rebuilds)
-  - [Space](#Space)
+1. [Introduction](#introduction)
+2. [Universal Hashing](#universal)
+  2.1 [Thereom 1](#thereom1)
+  2.2 [Constructing a Universal Hash Family: The Matrix Method](#matrix)
+3. [Perfect Hashing](#PerfectHashing)
+  3.1 [O(N<sup>2</sup>) - Space Solution](#N2)
+  3.2 [O(N) - Space Solution](#N)
+4. [Application](#Application)
+  4.1 [English Dictionary](#Dictionary)
+  4.2 [Command Line Interface](#cli)
+5. [Comparison](#comparison)
+  5.1 [Number of rebuilds](#rebuilds)
+  5.2 [Space](#space)
 
 ---
 
@@ -24,16 +24,16 @@ hash table as described in sections 3 and 4.
 
 ---
 
-## Universal Hashing
+## Universal Hashing <a name="universal"></a>
 A probability distribution H over hash functions from U to {1, ..., M} is universal if for all x=y in U, we have<br>
 Pr[h(x) = h(y)] ≤ 1/M
 
 
-### 2.1 Thereom 1
+### 2.1 Thereom 1 <a name="thereom1"></a>
 If H is universal, then for any set S ⊂ U, for any x ∈ U (that we might want to insert or lookup), for a random h taken from H, the expected number of collisions between x and other elements in S is at most N/M.
 
 
-### 2.2 Constructing a Universal Hash Family: The Matrix Method
+### 2.2 Constructing a Universal Hash Family: The Matrix Method <a name="matrix"></a>
 Let’s say keys are u-bits long. Say the table size M is power of 2, so an index is b-bits long with M = 2<sup>b</sup>. What we’ll do is pick h to be a random b-by-u 0/1 matrix, and define h(x)=hx, where we do addition mod 2. For instance:
 
 ![image](https://github.com/mohamedhassan279/Perfect-Hashing/assets/96317608/0fdb189d-a2dd-467e-99d9-2a38fce6224f)
@@ -42,20 +42,20 @@ We can show that for x = y, Pr[h(x) = h(y)] = 1/M = 1/2<sup>b</sup>
 
 ---
 
-## 3. Perfect Hashing:
+## 3. Perfect Hashing: <a name="PerfectHashing"></a>
 
-### 3.1 O(N<sup>2</sup>) - Space Solution
+### 3.1 O(N<sup>2</sup>) - Space Solution <a name="N2"></a>
 Say we are willing to have a table whose size is quadratic in the size N of our dictionary S. Then, here is an easy method. Let H be universal and M = N<sup>2</sup>. Pick a random h from H and try it out, hashing everything in S. So, we just try it, and if we got any collisions, we just try a new h. On average, we will only need to do this twice.
 
 
-### 3.2 O(N)-Space Solution
+### 3.2 O(N)-Space Solution <a name="N"></a>
 The main idea for this method is to use universal hash functions in a 2-level scheme. The method is as follows. We will first hash into a table of size N using universal hashing. This will produce some collisions. However, we will then rehash each bin using Method 1, squaring the size of the bin to get zero collisions. So, the way to think of this scheme is that we have a first-level hash function h and first-level table A, and then N second-level hash functions h1, ..., hN and N second-level tables A1, ..., AN. To look up an element x, we first compute i = h(x) and then find the element in Ai[hi(x)].
 
 ---
 
-## 4 Application:
+## 4 Application: <a name="application"></a>
 
-### 4.1 English Dictionary
+### 4.1 English Dictionary  <a name="dictionary"></a>
 As an application based on the perfect hashing implementation, it's required to implement a simple English dictionary supporting the following functionalities:
 1. Initialize (constructor): Takes the name of the type of the backend perfect hashing as an input and creates a new empty dictionary based on it.
 2. Insert: Takes a single string key and tries to insert it.
@@ -65,7 +65,7 @@ As an application based on the perfect hashing implementation, it's required to 
 6. Batch delete: Takes a path to a text file containing multiple words each in a separate line. And tries to delete all that words from the dictionary.
 
 
-### 4.2 Command Line Interface
+### 4.2 Command Line Interface <a name="cli"></a>
 Implement a command line interface that will enable us to deal with the dictionary
 and apply all its implemented operations. This interface must take the type of hash table as an initial input then create a dictionary based on it and allow the user to apply subsequent operations on it from the following list:
 1. Insert a string and prints a confirmation message or an error one if the the string already exists in the dictionary.
@@ -73,9 +73,9 @@ and apply all its implemented operations. This interface must take the type of h
 
 ---
 
-## 5. Comparison
+## 5. Comparison <a name="comparison"></a>
 
-### 5.1 Number of rebuilds:
+### 5.1 Number of **rebuilds**: <a name="rebuilds"></a>
 
 | size | Hash-O(N) | Hash-O(N<sup>2</sup>) |
 | ---- | --------- | --------------------- |
@@ -86,7 +86,7 @@ and apply all its implemented operations. This interface must take the type of h
 | 20,000 | 6388 | 0 |
 
 
-### 5.2 Space:
+### 5.2 Space: <a name="space"></a>
 
 | size   | Hash-O(N) | Hash-O(N<sup>2</sup>) |
 | ------ | --------- | --------------------- |
